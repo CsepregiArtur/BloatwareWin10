@@ -1,1 +1,1 @@
-notepad.exe
+echo hello
