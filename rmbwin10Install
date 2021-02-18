@@ -199,7 +199,7 @@ $darkmode.location               = New-Object System.Drawing.Point(417,7)
 $darkmode.Font                   = New-Object System.Drawing.Font('Microsoft Sans Serif',12)
 
 $whfm                        = New-Object system.Windows.Forms.Button
-$whfm.text                   = "Edit Hosts File"
+$whfm.text                   = "Edit Hosts File+"
 $whfm.width                  = 150
 $whfm.height                 = 30
 $whfm.location               = New-Object System.Drawing.Point(417,82)
