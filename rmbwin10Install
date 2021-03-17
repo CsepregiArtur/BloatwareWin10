@@ -178,7 +178,7 @@ $cortana.location                = New-Object System.Drawing.Point(251,82)
 $cortana.Font                    = New-Object System.Drawing.Font('Microsoft Sans Serif',12)
 
 $windowssearch                   = New-Object system.Windows.Forms.Button
-$windowssearch.text              = "Windows Search"
+$windowssearch.text              = "OneDrive Enabel"
 $windowssearch.width             = 150
 $windowssearch.height            = 30
 $windowssearch.location          = New-Object System.Drawing.Point(417,119)
@@ -782,19 +782,15 @@ $Paint3Dstuff = @(
 })
 
 $windowssearch.Add_Click({ 
-    Write-Host "Disabling Bing Search in Start Menu..."
-	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "BingSearchEnabled" -Type DWord -Value 0
-	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "CortanaConsent" -Type DWord -Value 0
-	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search")) {
-		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search" -Force | Out-Null
+     Write-Host "Enabling OneDrive..."
+	If (!(Test-Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\OneDrive")) {
+		New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\OneDrive" | Out-Null
 	}
-	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search" -Name "DisableWebSearch" -Type DWord -Value 1
-    Write-Host "Stopping and disabling Windows Search indexing service..."
-	Stop-Service "WSearch" -WarningAction SilentlyContinue
-	Set-Service "WSearch" -StartupType Disabled
-    Write-Host "Hiding Taskbar Search icon / box..."
-	Set-ItemProperty -Path "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search" -Name "SearchboxTaskbarMode" -Type DWord -Value 0
+	Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\OneDrive" -Name "DisableFileSyncNGSC" -Type DWord -Value 0
+    Write-Host "Enabling OneDrive..."
+	Start-Process -Name "OneDrive" -ErrorAction SilentlyContinue
 	$wshell.Popup("Operation Completed",0,"Done",0x0)
+
 })
 
 $backgroundapps.Add_Click({ 
