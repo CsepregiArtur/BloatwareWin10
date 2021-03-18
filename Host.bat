@@ -221,3 +221,5 @@ powercfg /S 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c
 ::Remove bandwidth limitation if you are using update version.
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Psched" /v "NonBestEffortLimit" /t REG_DWORD /d 0
 
+::Adding Ultimate Performance Plan
+powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
